@@ -17,10 +17,21 @@ class App extends Component {
         <header className="header">
           <h1 className="title">Airline Routes</h1>
         </header>
+
         <section>
-          <p>
-            Welcome to the app!
-          </p>
+          <table class='routes-table'>
+            <thead>
+              <tr>
+                <th>Airline</th>
+                <th>Source Airport</th>
+                <th>Destination Airport</th>
+              </tr>
+            </thead>
+
+            <tbody>
+            
+            </tbody>
+          </table>
         </section>
       </div>
     );
