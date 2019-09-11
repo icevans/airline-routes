@@ -29,7 +29,13 @@ class App extends Component {
             </thead>
 
             <tbody>
-            
+              {this.state.routes.map(route => (
+                <tr key={route.airline + route.src + route.dest}>
+                  <td>{route.airline}</td>
+                  <td>{route.src}</td>
+                  <td>{route.dest}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </section>
