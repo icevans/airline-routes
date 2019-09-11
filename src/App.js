@@ -37,6 +37,18 @@ class App extends Component {
     return currentPage === lastPage;
   }
 
+  goToNextPage = () => {
+    this.setState(prevState => (
+      {itemOffset: prevState.itemLimit + prevState.itemLimit}
+    ));
+  }
+
+  goToPrevPage = () => {
+    this.setState(prevState => (
+      {itemOffset: prevState.itemLimit - prevState.itemLimit}
+    ));
+  }
+
   render() {
     const columns = [
       {name: 'Airline', property: 'airline'},
@@ -57,6 +69,23 @@ class App extends Component {
             rows={this.state.routes}
             format={this.formatValue}
           />
+        </section>
+
+        <section className='pagination'>
+          <p>
+            <button
+              onClick={this.goToPrevPage}
+              disabled={this.onFirstPage()}
+            >
+              Previous Page
+            </button>
+            <button
+              onClick={this.goToNextPage}
+              disabled={this.onLastPage()}
+            >
+              Next Page
+            </button>
+          </p>
         </section>
       </div>
     );
