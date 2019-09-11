@@ -24,6 +24,19 @@ class App extends Component {
     );
   }
 
+  onFirstPage = () => {
+    return this.state.itemOffset === 0;
+  }
+
+  onLastPage = () => {
+    const numPages = this.state.routes.length / this.itemLimit;
+    const lastPage = Math.floor(numPages);
+    const currentPage = 
+      (this.state.itemOffset + this.itemLimit) / this.itemLimit;
+
+    return currentPage === lastPage;
+  }
+
   render() {
     const columns = [
       {name: 'Airline', property: 'airline'},
