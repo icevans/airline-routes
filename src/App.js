@@ -16,9 +16,9 @@ class App extends Component {
 
   render() {
     const columns = [
-      'Airline',
-      'Source Airport',
-      'Destination Airport',
+      {name: 'Airline', property: 'airline'},
+      {name: 'Source Airport', property: 'src'},
+      {name: 'Destination Airport', property: 'dest'},
     ];
 
     return (
