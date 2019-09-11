@@ -3,6 +3,14 @@ import './App.css';
 import data from './data';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      routes: data.routes,
+    };
+  }
+
   render() {
     return (
       <div className="app">
