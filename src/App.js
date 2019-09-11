@@ -14,6 +14,14 @@ class App extends Component {
     };
   }
 
+  formatValue = (property, value) => {
+    return property === 'airline' ? (
+      getAirlineById(value).name
+    ) : (
+      getAirportByCode(value).name
+    );
+  }
+
   render() {
     const columns = [
       {name: 'Airline', property: 'airline'},
@@ -32,8 +40,7 @@ class App extends Component {
             columns={columns}
             className='routes-table'
             routes={this.state.routes}
-            getAirlineById={getAirlineById}
-            getAirportByCode={getAirportByCode}
+            format={this.formatValue}
           />
         </section>
       </div>

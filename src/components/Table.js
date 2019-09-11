@@ -19,10 +19,9 @@ class Table extends React.Component {
             <tr key={route.airline + route.src + route.dest}>
               {this.props.columns.map(column => (
                 <td>
-                  {column.property === 'airline' ? (
-                    this.props.getAirlineById(route[column.property]).name
-                  ) : (
-                    this.props.getAirportByCode(route[column.property]).name
+                  {this.props.format(
+                    column.property, 
+                    route[column.property]
                   )}
                 </td>
               ))}
