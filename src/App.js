@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import data from './data';
+import {getAirlineById} from './data'
+import {getAirportByCode} from './data'
 
 class App extends Component {
   constructor(props) {
