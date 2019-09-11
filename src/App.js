@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
+import Table from './components/Table';
 import data from './data';
-import {getAirlineById} from './data'
-import {getAirportByCode} from './data'
+import {getAirlineById} from './data';
+import {getAirportByCode} from './data';
 
 class App extends Component {
   constructor(props) {
@@ -21,25 +22,12 @@ class App extends Component {
         </header>
 
         <section>
-          <table class='routes-table'>
-            <thead>
-              <tr>
-                <th>Airline</th>
-                <th>Source Airport</th>
-                <th>Destination Airport</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              {this.state.routes.map(route => (
-                <tr key={route.airline + route.src + route.dest}>
-                  <td>{getAirlineById(route.airline).name}</td>
-                  <td>{getAirportByCode(route.src).name}</td>
-                  <td>{getAirportByCode(route.dest).name}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <Table
+            className='routes-table'
+            routes={this.state.routes}
+            getAirlineById={getAirlineById}
+            getAirportByCode={getAirportByCode}
+          />
         </section>
       </div>
     );
