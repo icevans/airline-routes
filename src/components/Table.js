@@ -6,9 +6,9 @@ class Table extends React.Component {
       <table className='routes-table'>
         <thead>
           <tr>
-            <th>Airline</th>
-            <th>Source Airport</th>
-            <th>Destination Airport</th>
+            {this.props.columns.map(column => (
+              <th>{column}</th>
+            ))}
           </tr>
         </thead>
 

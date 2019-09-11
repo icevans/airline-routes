@@ -15,6 +15,12 @@ class App extends Component {
   }
 
   render() {
+    const columns = [
+      'Airline',
+      'Source Airport',
+      'Destination Airport',
+    ];
+
     return (
       <div className="app">
         <header className="header">
@@ -23,6 +29,7 @@ class App extends Component {
 
         <section>
           <Table
+            columns={columns}
             className='routes-table'
             routes={this.state.routes}
             getAirlineById={getAirlineById}
