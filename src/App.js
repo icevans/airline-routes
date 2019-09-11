@@ -33,9 +33,9 @@ class App extends Component {
             <tbody>
               {this.state.routes.map(route => (
                 <tr key={route.airline + route.src + route.dest}>
-                  <td>{route.airline}</td>
-                  <td>{route.src}</td>
-                  <td>{route.dest}</td>
+                  <td>{getAirlineById(route.airline).name}</td>
+                  <td>{getAirportByCode(route.src).name}</td>
+                  <td>{getAirportByCode(route.dest).name}</td>
                 </tr>
               ))}
             </tbody>
