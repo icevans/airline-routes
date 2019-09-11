@@ -29,10 +29,10 @@ class App extends Component {
   }
 
   onLastPage = () => {
-    const numPages = this.state.routes.length / this.itemLimit;
+    const numPages = this.state.routes.length / this.state.itemLimit;
     const lastPage = Math.floor(numPages);
     const currentPage = 
-      (this.state.itemOffset + this.itemLimit) / this.itemLimit;
+      (this.state.itemOffset + this.state.itemLimit) / this.state.itemLimit;
 
     return currentPage === lastPage;
   }
