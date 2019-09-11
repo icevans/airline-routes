@@ -39,7 +39,7 @@ class App extends Component {
           <Table
             columns={columns}
             className='routes-table'
-            routes={this.state.routes}
+            rows={this.state.routes}
             format={this.formatValue}
           />
         </section>

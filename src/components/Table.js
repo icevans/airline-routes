@@ -3,7 +3,6 @@ import React from 'react';
 class Table extends React.Component {
 
   render() {
-    console.log(this.props)
     return (
       <table className='routes-table'>
         <thead>
@@ -15,13 +14,13 @@ class Table extends React.Component {
         </thead>
 
         <tbody>
-          {this.props.routes.map(route => (
-            <tr key={route.airline + route.src + route.dest}>
+          {this.props.rows.map(row => (
+            <tr key={Object.values(row).join('-')}>
               {this.props.columns.map(column => (
                 <td>
                   {this.props.format(
                     column.property, 
-                    route[column.property]
+                    row[column.property]
                   )}
                 </td>
               ))}
