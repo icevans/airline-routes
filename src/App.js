@@ -11,6 +11,8 @@ class App extends Component {
 
     this.state = {
       routes: data.routes,
+      paginationOffset: 0,
+      paginationLimit: 25,
     };
   }
 
