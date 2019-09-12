@@ -28,6 +28,13 @@ class Table extends React.Component {
     ));
   }
 
+  rowsForCurrentPage = () => {
+    return this.props.rows.slice(
+      this.state.rowOffset,
+      this.state.rowOffset +this.props.rowsPerPage
+    );
+  }
+
   goToPrevPage = () => {
     this.setState(prevState => (
       {rowOffset: prevState.rowOffset - this.props.rowsPerPage}
@@ -63,7 +70,7 @@ class Table extends React.Component {
         </thead>
 
         <tbody>
-          {this.props.rows.map(row => (
+          {this.rowsForCurrentPage().map(row => (
             <tr key={Object.values(row).join('-')}>
               {this.props.columns.map(column => (
                 <td>
