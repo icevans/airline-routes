@@ -11,8 +11,6 @@ class App extends Component {
 
     this.state = {
       routes: data.routes,
-      itemOffset: 0,
-      itemLimit: 25,
     };
   }
 
@@ -22,31 +20,6 @@ class App extends Component {
     ) : (
       getAirportByCode(value).name
     );
-  }
-
-  onFirstPage = () => {
-    return this.state.itemOffset === 0;
-  }
-
-  onLastPage = () => {
-    const numPages = this.state.routes.length / this.state.itemLimit;
-    const lastPage = Math.floor(numPages);
-    const currentPage = 
-      (this.state.itemOffset + this.state.itemLimit) / this.state.itemLimit;
-
-    return currentPage === lastPage;
-  }
-
-  goToNextPage = () => {
-    this.setState(prevState => (
-      {itemOffset: prevState.itemLimit + prevState.itemLimit}
-    ));
-  }
-
-  goToPrevPage = () => {
-    this.setState(prevState => (
-      {itemOffset: prevState.itemLimit - prevState.itemLimit}
-    ));
   }
 
   render() {
@@ -68,24 +41,8 @@ class App extends Component {
             className='routes-table'
             rows={this.state.routes}
             format={this.formatValue}
+            itemLimit={25}
           />
-        </section>
-
-        <section className='pagination'>
-          <p>
-            <button
-              onClick={this.goToPrevPage}
-              disabled={this.onFirstPage()}
-            >
-              Previous Page
-            </button>
-            <button
-              onClick={this.goToNextPage}
-              disabled={this.onLastPage()}
-            >
-              Next Page
-            </button>
-          </p>
         </section>
       </div>
     );
