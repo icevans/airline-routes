@@ -41,7 +41,7 @@ class App extends Component {
             className='routes-table'
             rows={this.state.routes}
             format={this.formatValue}
-            itemLimit={25}
+            rowsPerPage={25}
           />
         </section>
       </div>

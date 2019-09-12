@@ -5,32 +5,32 @@ class Table extends React.Component {
     super(props);
 
     this.state = {
-      itemOffset: 0,
+      rowOffset: 0,
     }
   }
 
   onFirstPage = () => {
-    return this.state.itemOffset === 0;
+    return this.state.rowOffset === 0;
   }
 
   onLastPage = () => {
-    const numPages = this.props.rows.length / this.props.itemLimit;
+    const numPages = this.props.rows.length / this.props.rowsPerPage;
     const lastPage = Math.floor(numPages);
     const currentPage = 
-      (this.state.itemOffset + this.props.itemLimit) / this.props.itemLimit;
+      (this.state.rowOffset + this.props.rowsPerPage) / this.props.rowsPerPage;
 
     return currentPage === lastPage;
   }
 
   goToNextPage = () => {
     this.setState(prevState => (
-      {itemOffset: prevState.itemOffset + this.props.itemLimit}
+      {rowOffset: prevState.rowOffset + this.props.rowsPerPage}
     ));
   }
 
   goToPrevPage = () => {
     this.setState(prevState => (
-      {itemOffset: prevState.itemOffset - this.props.itemLimit}
+      {rowOffset: prevState.rowOffset - this.props.rowsPerPage}
     ));
   }
 
