@@ -13,6 +13,18 @@ class Table extends React.Component {
     return this.state.rowOffset === 0;
   }
 
+  numRows = () => {
+    return this.props.rows.length;
+  }
+
+  pageLowBound = () => {
+    return this.state.rowOffset + 1;
+  }
+
+  pageUpBound = () => {
+    return this.state.rowOffset + 25;
+  }
+
   onLastPage = () => {
     const numPages = this.props.rows.length / this.props.rowsPerPage;
     const lastPage = Math.floor(numPages);
@@ -45,6 +57,9 @@ class Table extends React.Component {
     return (
       <table className='routes-table'>
         <caption className='pagination' align='bottom'>
+          <p>
+            Showing rows {this.pageLowBound()} - {this.pageUpBound()} of {this.numRows()}
+          </p>
           <p>
             <button
               onClick={this.goToPrevPage}
