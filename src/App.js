@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
-import Table from './components/Table';
 import data from './data';
+import Table from './components/Table';
+import Select from './components/Select';
 import {getAirlineById} from './data';
 import {getAirportByCode} from './data';
 
@@ -78,21 +79,26 @@ class App extends Component {
         <section>
           <form>
             <label>Show routes on</label>
-            <select onChange={this.filterByAirline}>
-              <option value=''>All Airlines</option>
-              {data.airlines.map(airline => (
-                <option value={airline.id}>{airline.name}</option>
-              ))}
-            </select>
+            <Select 
+              onChange={this.filterByAirline}
+              value={this.state.airlineFilter}
+              options={data.airlines}
+              allTitle='All Airlines'
+              valueKey='id'
+              titleKey='name'
+            />
 
             <label>flying in or out of</label>
-            <select onChange={this.filterByAirport}>
-              <option value=''>All Airports</option>
-              {data.airports.map(airport => (
-                <option value={airport.code}>{airport.name}</option>
-              ))}
-            </select>
+            <Select 
+              onChange={this.filterByAirport}
+              value={this.state.airportFilter}
+              options={data.airports}
+              allTitle='All Airports'
+              valueKey='code'
+              titleKey='name'
+            />
           </form>
+
           <Table
             columns={columns}
             className='routes-table'
