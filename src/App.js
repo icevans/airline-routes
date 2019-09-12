@@ -59,6 +59,22 @@ class App extends Component {
     return filtered;
   }
 
+  filteredAirlines = () => {
+    return data.airlines.filter(airline => (
+      this.filteredRoutes().some(route => {
+        return route.airline === airline.id
+      })
+    ))
+  }
+
+  filteredAirports = () => {
+    return data.airports.filter(airport => (
+      this.filteredRoutes().some(route => (
+        route.src === airport.code || route.dest === airport.code
+      ))
+    ));
+  }
+
   clearFilters = (event) => {
     event && event.preventDefault();
 
@@ -87,7 +103,7 @@ class App extends Component {
             <Select 
               onChange={this.filterByAirline}
               value={this.state.airlineFilter}
-              options={data.airlines}
+              options={this.filteredAirlines()}
               allTitle='All Airlines'
               valueKey='id'
               titleKey='name'
@@ -97,7 +113,7 @@ class App extends Component {
             <Select 
               onChange={this.filterByAirport}
               value={this.state.airportFilter}
-              options={data.airports}
+              options={this.filteredAirports()}
               allTitle='All Airports'
               valueKey='code'
               titleKey='name'
