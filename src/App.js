@@ -16,10 +16,6 @@ class App extends Component {
     };
   }
 
-  componentDidUpdate() {
-    console.log(this.state.airlineFilter);
-  }
-
   formatValue = (property, value) => {
     return property === 'airline' ? (
       getAirlineById(value).name
