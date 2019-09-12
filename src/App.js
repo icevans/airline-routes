@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
 import data from './data';
-import Table from './components/Table';
-import Select from './components/Select';
 import {getAirlineById} from './data';
 import {getAirportByCode} from './data';
+import Table from './components/Table';
+import Select from './components/Select';
+import RoutesMap from './components/RoutesMap';
 
 class App extends Component {
   constructor(props) {
@@ -99,40 +100,10 @@ class App extends Component {
 
 
         <section>
-          <svg className="map" viewBox="-180 -90 360 180">
-            <g transform="scale(1 -1)">
-              <image 
-                xlinkHref="equirectangular_world.jpg" 
-                href="equirectangular_world.jpg" 
-                x="-180" y="-90" 
-                height="100%" 
-                width="100%" 
-                transform="scale(1 -1)"
-              />
-
-              {this.filteredRoutes().map(route => (
-                <g key="">
-                  <circle 
-                    className="source" 
-                    cx={getAirportByCode(route.src).long} 
-                    cy={getAirportByCode(route.src).lat}>
-                    <title></title>
-                  </circle> 
-                  <circle 
-                    className="destination" 
-                    cx={getAirportByCode(route.dest).long} 
-                    cy={getAirportByCode(route.dest).lat}>
-                    <title></title>
-                  </circle>
-                  <path 
-                    d={
-                      `M${getAirportByCode(route.src).long} ${getAirportByCode(route.src).lat} L ${getAirportByCode(route.dest).long} ${getAirportByCode(route.dest).lat}`
-                    }
-                  />
-                </g>
-              ))}
-            </g>
-          </svg>
+          <RoutesMap
+            routes={this.filteredRoutes()}
+            getAirportByCode={getAirportByCode}
+          />
         </section>
 
         <section>
