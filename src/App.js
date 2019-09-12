@@ -10,8 +10,13 @@ class App extends Component {
     super(props);
 
     this.state = {
-      routes: data.routes,
+      airlineFilter: '',
+      airportFilter: '',
     };
+  }
+
+  componentDidUpdate() {
+    console.log(this.filteredRoutes());
   }
 
   formatValue = (property, value) => {
@@ -20,6 +25,41 @@ class App extends Component {
     ) : (
       getAirportByCode(value).name
     );
+  };
+
+  filterByAirline = (event) => {
+    const airlineId = event.target.value;
+
+    this.setState({
+      airlineFilter: Number(airlineId),
+    });
+  };
+
+  filterByAirport = (event) => {
+    const airportCode = event.target.value;
+
+    this.setState({
+      airportFilter: airportCode,
+    });
+  };
+
+  filteredRoutes = () => {
+    let filtered = data.routes;
+
+    if (this.state.airlineFilter) {
+      filtered = filtered.filter(route => (
+        route.airline === this.state.airlineFilter
+      ));
+    }
+
+    if (this.state.airportFilter) {
+      filtered = filtered.filter(route => (
+        route.src === this.state.airportFilter ||
+          route.dest === this.state.airportFilter
+      ));
+    }
+
+    return filtered;
   }
 
   render() {
@@ -38,7 +78,7 @@ class App extends Component {
         <section>
           <form>
             <label>Show routes on</label>
-            <select>
+            <select onChange={this.filterByAirline}>
               <option value=''>All Airlines</option>
               {data.airlines.map(airline => (
                 <option value={airline.id}>{airline.name}</option>
@@ -46,7 +86,7 @@ class App extends Component {
             </select>
 
             <label>flying in or out of</label>
-            <select>
+            <select onChange={this.filterByAirport}>
               <option value=''>All Airports</option>
               {data.airports.map(airport => (
                 <option value={airport.code}>{airport.name}</option>
@@ -56,7 +96,7 @@ class App extends Component {
           <Table
             columns={columns}
             className='routes-table'
-            rows={this.state.routes}
+            rows={this.filteredRoutes()}
             format={this.formatValue}
             rowsPerPage={25}
           />
