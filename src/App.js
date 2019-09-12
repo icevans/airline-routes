@@ -59,6 +59,15 @@ class App extends Component {
     return filtered;
   }
 
+  clearFilters = (event) => {
+    event && event.preventDefault();
+
+    this.setState({
+      airlineFilter: '',
+      airportFilter: '',
+    });
+  }
+
   render() {
     const columns = [
       {name: 'Airline', property: 'airline'},
@@ -93,6 +102,10 @@ class App extends Component {
               valueKey='code'
               titleKey='name'
             />
+
+            <button onClick={this.clearFilters}>
+              Show All Routes
+            </button>
           </form>
 
           <Table
