@@ -16,7 +16,7 @@ class App extends Component {
   }
 
   componentDidUpdate() {
-    console.log(this.filteredRoutes());
+    console.log(this.state.airlineFilter);
   }
 
   formatValue = (property, value) => {
@@ -31,7 +31,7 @@ class App extends Component {
     const airlineId = event.target.value;
 
     this.setState({
-      airlineFilter: Number(airlineId),
+      airlineFilter: airlineId && Number(airlineId),
     });
   };
 
@@ -46,13 +46,13 @@ class App extends Component {
   filteredRoutes = () => {
     let filtered = data.routes;
 
-    if (this.state.airlineFilter) {
+    if (this.state.airlineFilter !== '') {
       filtered = filtered.filter(route => (
         route.airline === this.state.airlineFilter
       ));
     }
 
-    if (this.state.airportFilter) {
+    if (this.state.airportFilter !== '') {
       filtered = filtered.filter(route => (
         route.src === this.state.airportFilter ||
           route.dest === this.state.airportFilter
