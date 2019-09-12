@@ -109,6 +109,28 @@ class App extends Component {
                 width="100%" 
                 transform="scale(1 -1)"
               />
+
+              {this.filteredRoutes().map(route => (
+                <g key="">
+                  <circle 
+                    className="source" 
+                    cx={getAirportByCode(route.src).long} 
+                    cy={getAirportByCode(route.src).lat}>
+                    <title></title>
+                  </circle> 
+                  <circle 
+                    className="destination" 
+                    cx={getAirportByCode(route.dest).long} 
+                    cy={getAirportByCode(route.dest).lat}>
+                    <title></title>
+                  </circle>
+                  <path 
+                    d={
+                      `M${getAirportByCode(route.src).long} ${getAirportByCode(route.src).lat} L ${getAirportByCode(route.dest).long} ${getAirportByCode(route.dest).lat}`
+                    }
+                  />
+                </g>
+              ))}
             </g>
           </svg>
         </section>
