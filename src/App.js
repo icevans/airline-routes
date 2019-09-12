@@ -58,7 +58,7 @@ class App extends Component {
 
     return filtered;
   }
-
+  
   filteredAirlines = () => {
     return data.airlines.filter(airline => (
       this.filteredRoutes().some(route => {
@@ -96,6 +96,22 @@ class App extends Component {
         <header className="header">
           <h1 className="title">Airline Routes</h1>
         </header>
+
+
+        <section>
+          <svg className="map" viewBox="-180 -90 360 180">
+            <g transform="scale(1 -1)">
+              <image 
+                xlinkHref="equirectangular_world.jpg" 
+                href="equirectangular_world.jpg" 
+                x="-180" y="-90" 
+                height="100%" 
+                width="100%" 
+                transform="scale(1 -1)"
+              />
+            </g>
+          </svg>
+        </section>
 
         <section>
           <form>
