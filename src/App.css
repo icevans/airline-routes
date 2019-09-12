@@ -38,6 +38,11 @@ table.routes-table {
   background-color: #eee;
 }
 
+form {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
 select {
   margin: 0 .5em;
 }

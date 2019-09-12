@@ -36,6 +36,23 @@ class App extends Component {
         </header>
 
         <section>
+          <form>
+            <label>Show routes on</label>
+            <select>
+              <option value=''>All Airlines</option>
+              {data.airlines.map(airline => (
+                <option value={airline.id}>{airline.name}</option>
+              ))}
+            </select>
+
+            <label>flying in or out of</label>
+            <select>
+              <option value=''>All Airports</option>
+              {data.airports.map(airport => (
+                <option value={airport.code}>{airport.name}</option>
+              ))}
+            </select>
+          </form>
           <Table
             columns={columns}
             className='routes-table'
